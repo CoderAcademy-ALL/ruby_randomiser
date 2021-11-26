@@ -1,3 +1,5 @@
+require 'colorize'
+
 #START with group in memory
 group = ["Alice", "Bob", "Charlie"]
 
@@ -7,14 +9,14 @@ while true
     input = gets.chomp.to_i
     case input 
     when 1 
-        puts "Selected Random Student option"
+        puts "Selected Random Student option".colorize(:blue)
     when 2
-        puts "Selected Random Group option"
+        puts "Selected Random Group option".colorize(:green)
     when 3
-        puts "Goodbye"
+        puts "Goodbye".colorize(:yellow)
         exit
     else
-        puts "Please pick 1, 2, or 3"
+        puts "Please pick 1, 2, or 3".colorize(:red)
     end 
 
 end 
