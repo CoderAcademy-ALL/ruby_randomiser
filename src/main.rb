@@ -1,4 +1,5 @@
 require 'colorize'
+require_relative './methods.rb'
 
 #START with group in memory
 group = ["Alice", "Bob", "Charlie"]
@@ -10,8 +11,11 @@ while true
     case input 
     when 1 
         puts "Selected Random Student option".colorize(:blue)
+        random_student = pick_random(group)
+        puts "Selected: #{random_student}"
     when 2
         puts "Selected Random Group option".colorize(:green)
+        
     when 3
         puts "Goodbye".colorize(:yellow)
         exit
