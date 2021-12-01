@@ -2,7 +2,44 @@ require 'colorize'
 require_relative './methods.rb'
 
 #START with group in memory
-group = ["Alice", "Bob", "Charlie"]
+test_group = [
+    "Anup",
+    "Donald",
+    "Eric",
+    "Eman",
+    "Jane",
+    "Joshua",
+    "Jungah",
+    "Kim",
+    "Kyle",
+    "Nora",
+    "Raymond",
+    "Xinyi",
+    "Elizabeth",
+    "Sushma",
+    "Mohammad A",
+    "Mohammad I",
+    "Willem",
+    "Dylan",
+    "Ashley",
+    "Krish",
+    "Lance",
+    "Elizabeth",
+    "Masood",
+    "James",
+    "Cait",
+    "Daisy",
+    "Yun",
+    "Geoff",
+    "Morgan",
+    "Chris",
+    "Jesse",
+    "Feng",
+    "Nga",
+    "Jacqui",
+    "Vittorio",
+    "Zach"
+  ]
 
 #BASIC MENU SYSTEM
 while true 
@@ -11,11 +48,12 @@ while true
     case input 
     when 1 
         puts "Selected Random Student option".colorize(:blue)
-        random_student = pick_random(group)
+        random_student = pick_random(test_group)
         puts "Selected: #{random_student}"
     when 2
         puts "Selected Random Group option".colorize(:green)
-        
+        radomised_group = randomise_group(test_group)
+        output_group(radomised_group)
     when 3
         puts "Goodbye".colorize(:yellow)
         exit
