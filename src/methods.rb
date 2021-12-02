@@ -23,3 +23,18 @@ def output_group(group)
         puts "#{index + 1}. #{person}" 
     end 
 end
+
+def add_member(group, name)
+   group.push(name)
+end 
+
+def output_group_length(size)
+    case size
+    when 0 
+        puts "The group is empty"
+    when 1
+        puts "The group only has one member"
+    else
+        puts "There are #{size} members in the group"
+    end
+end 
