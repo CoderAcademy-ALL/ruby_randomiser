@@ -20,7 +20,11 @@ class Group
         randomise_order.each_with_index do |name, index|
             puts "#{index + 1}.  #{name}"
         end
-
     end 
+
+    def pick_random_name 
+        @names_array.sample
+    end
+    
 
 end
