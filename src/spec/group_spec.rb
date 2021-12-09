@@ -3,7 +3,22 @@ require_relative '../classes/group.rb'
 describe 'Group' do
     
     before(:each) do 
-        @test_group = Group.new("Test Group")
+        @test_group = Group.new("Test Group", "./data/test-group.txt")
+        @names = File.readlines("./data/test-group.txt").map(&:strip)
+    end
+    
+    after(:all) do 
+        test_group_array = [
+            "Daisy Watt",
+            "Nga Dang", 
+            "Yosemite Sam", 
+            "Callywag", 
+            "Dwayne Johnson", 
+            "Kyle Kim"
+        ]
+        File.open("./data/test-group.txt", "w") do |f|
+            f.puts(test_group_array)
+        end 
     end 
 
     it "should be an instance of a Group" do 
@@ -19,8 +34,8 @@ describe 'Group' do
     end
     
     describe ".names_name" do 
-        it "should contain the name Alice" do 
-            expect(@test_group.names_array).to include("Alice")
+        it "should contain the same names as my test group" do 
+            expect(@test_group.names_array).to include(*@names)
         end 
     end
     
@@ -63,8 +78,28 @@ describe 'Group' do
         end
 
         it "should output a name from @names_array to stdout" do 
-            expect{@test_group.output_randomised_group}.to output(/Alice/).to_stdout
+            expect{@test_group.output_randomised_group}.to output(/#{Regexp.quote(@test_group.names_array.sample)}/).to_stdout
         end 
 
     end 
+
+    describe ".save" do 
+
+        it "should update the length of the array we get back from the file path" do 
+            @test_group.add_name("Bob")
+            @test_group.save 
+            updated_names_array = File.readlines("./data/test-group.txt").map(&:strip)
+            expect(updated_names_array.length).to eq(@names.length + 1)
+        end 
+
+        it "should update the file with the most recently added name" do 
+            @test_group.add_name("Alice")
+            @test_group.save 
+            updated_names_array = File.readlines("./data/test-group.txt").map(&:strip)
+            expect(updated_names_array.last).to eq("Alice")
+        end 
+
+    end 
+
+
 end 
