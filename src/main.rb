@@ -2,48 +2,10 @@ require 'colorize'
 require_relative './methods.rb'
 require_relative './classes/group.rb'
 
-#START with group in memory
-# test_group = [
-#     "Anup",
-#     "Donald",
-#     "Eric",
-#     "Eman",
-#     "Jane",
-#     "Joshua",
-#     "Jungah",
-#     "Kim",
-#     "Kyle",
-#     "Nora",
-#     "Raymond",
-#     "Xinyi",
-#     "Elizabeth",
-#     "Sushma",
-#     "Mohammad A",
-#     "Mohammad I",
-#     "Willem",
-#     "Dylan",
-#     "Ashley",
-#     "Krish",
-#     "Lance",
-#     "Elizabeth",
-#     "Masood",
-#     "James",
-#     "Cait",
-#     "Daisy",
-#     "Yun",
-#     "Geoff",
-#     "Morgan",
-#     "Chris",
-#     "Jesse",
-#     "Feng",
-#     "Nga",
-#     "Jacqui",
-#     "Vittorio",
-#     "Zach"
-#   ]
 
-@test_group = Group.new("Test Group")
 
+@test_group = Group.new("Test Group", "./data/melb-fx1.txt")
+group_length = @test_group.names_array.length
 #BASIC MENU SYSTEM
 while true
     output_group_length(@test_group.names_array.length)
@@ -62,6 +24,14 @@ while true
         input = gets.chomp
         @test_group.add_name(input)
     when 4
+        if group_length != @test_group.names_array.length
+           puts "The group has been altered, would you like to save?"
+           input = gets.chomp 
+           if input.downcase == "yes"
+             @test_group.save
+             puts "saved group"
+           end  
+        end
         puts "Goodbye".colorize(:yellow)
         exit
     else
