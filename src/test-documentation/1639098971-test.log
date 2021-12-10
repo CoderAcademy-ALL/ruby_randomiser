@@ -1,0 +1,25 @@
+
+Group
+  should be an instance of a Group
+  should have a name property
+  should have an array of names
+  .names_name
+    should contain the same names as my test group
+  .randomise_order
+    should be defined
+    should return an array
+    should include all the names from @names_array
+  .add_name
+    should be defined
+    should increase @names_array by one
+    should append the input name to the end of @names_array
+  .output_randomised_group
+    should be defined
+    should output a name from @names_array to stdout
+  .save
+    should update the length of the array we get back from the file path
+    should update the file with the most recently added name
+
+Finished in 0.01666 seconds (files took 0.23846 seconds to load)
+14 examples, 0 failures
+
