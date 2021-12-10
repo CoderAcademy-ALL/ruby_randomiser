@@ -2,33 +2,50 @@ require 'colorize'
 require_relative './methods.rb'
 require_relative './classes/group.rb'
 
+if ARGV.length > 0 
+    flag, *rest = ARGV 
+    ARGV.clear
+    case flag
+    when '-help'
+        puts "Check the readme"
+        exit
+    when '-info'
+        puts "Written by FX2021-02"
+        exit
+    when '-path'
+        group = Group.new(rest[1] ||= "Default Group", rest[0])
+    else 
+     puts "Invalid argument, please check documentation"
+     exit 
+    end
+end  
 
+    group ||= Group.new("Test Group", "./data/melb-fx1.txt")
 
-@test_group = Group.new("Test Group", "./data/melb-fx1.txt")
-group_length = @test_group.names_array.length
+group_length = group.names_array.length
 #BASIC MENU SYSTEM
 while true
-    output_group_length(@test_group.names_array.length)
+    output_group_length(group.names_array.length)
     puts "Pick 1) for Random Student, Pick 2) for Random Group, Pick 3) to Add a member, Pick 4) to quit"
     input = gets.chomp.to_i
     case input 
     when 1 
         puts "Selected Random Student option".colorize(:blue)
-        random_student = @test_group.pick_random_name
+        random_student = group.pick_random_name
         puts "Selected: #{random_student}"
     when 2
         puts "Selected Random Group option".colorize(:green)
-        @test_group.output_randomised_group
+        group.output_randomised_group
     when 3
         puts "Type name of member to add:"
         input = gets.chomp
-        @test_group.add_name(input)
+        group.add_name(input)
     when 4
-        if group_length != @test_group.names_array.length
+        if group_length != group.names_array.length
            puts "The group has been altered, would you like to save?"
            input = gets.chomp 
            if input.downcase == "yes"
-             @test_group.save
+             group.save
              puts "saved group"
            end  
         end
